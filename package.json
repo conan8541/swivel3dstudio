@@ -2,6 +2,7 @@
   "name": "clovisi",
   "private": true,
   "version": "0.0.0",
+  "author": "rsw",
   "type": "module",
   "scripts": {
     "dev": "vite",
