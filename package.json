@@ -1,0 +1,24 @@
+{
+  "name": "clovisi",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "daisyui": "^4.12.23",
+    "vite": "^6.1.0"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^7.50.0",
+    "@babylonjs/loaders": "^7.50.0",
+    "@babylonjs/materials": "^7.50.0",
+    "@shadcn/ui": "^0.0.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.2.7"
+  }
+}

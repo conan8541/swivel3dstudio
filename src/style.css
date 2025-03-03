@@ -1,0 +1,89 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle, #e5e5e5,rgb(192, 190, 190),rgb(138, 138, 138));
+  }
+}
+.roboto-herofont {
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+:root {
+  font-family: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.mid-gray-text {
+  color: #6b7280; /* Tailwind's mid-gray color code */
+}
+h1 {
+  font-size: 3.5em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.webGLcard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;                  /* Set a fixed width for all cards */
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  margin: 0 10px;   /* Change cursor to pointer on hover */
+}
+
+/* Hover effect for the card */
+.webGLcard:hover {
+  transform: translateY(-8px); /* Slight lift effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow */
+}
+
+/* Center the content inside the card */
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+}
+.card-content {
+  display: flex;
+  flex-wrap: wrap;               
+  justify-content: center;       /* Center align all cards */
+  gap: 20px;                     /* Uniform spacing between cards */
+  padding: 20px;
+  min-height: 400px; 
+}
+
+/* Styling for the text inside the card */
+.card-text {
+  font-size: 1.125rem; /* Large text */
+  font-weight: bold; /* Bold text */
+}
+
+/* Custom mid-gray text color */
+.mid-gray-text {
+  color: #6b7280; /* Tailwind's gray-500 color */
+}
+.card-image {
+  width: 100%;   /* Make image fill the width of the card */
+  height: auto;  /* Maintain aspect ratio */
+  border-radius: 8px;  /* Optional: rounded corners */
+  object-fit: cover;  /* Ensure the image covers the space properly */
+  margin-bottom: 8px;  /* Space between image and text */
+}
+.container{
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin: 12px;
+}
