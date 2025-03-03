@@ -10,6 +10,7 @@ import { ShadowGenerator } from "@babylonjs/core/Lights/Shadows/shadowGenerator"
 import { PBRMaterial } from "@babylonjs/core/Materials/PBR";
 import { Texture } from '@babylonjs/core/Materials/Textures/texture';
 import { ShadowOnlyMaterial } from "@babylonjs/materials";
+import { gsap } from "gsap";
 import { cardData } from '../components/data/cardData.js';
 import createCards from "../components/webGlCards.js";
 import { Mesh } from "@babylonjs/core/Meshes/mesh"; // <-- Added this import
@@ -89,6 +90,9 @@ const app = document.getElementById("app");
 createCards();
 
 
+
+
+
 async function loadModel() {
   try {
     AirBrushModel = await SceneLoader.ImportMeshAsync("", model, "", scene);
@@ -99,18 +103,19 @@ async function loadModel() {
       return;
     }
 
+    // Create a parent mesh to group all parts
+    const parentMesh = new Mesh("airbrushParent", scene);
     meshes.forEach(mesh => {
       if (!mesh || mesh.getTotalVertices() === 0) {
         console.warn(`Mesh ${mesh?.name || "Unnamed"} has no vertices.`);
       } else {
         console.log(`Mesh ${mesh.name} loaded successfully with ${mesh.getTotalVertices()} vertices.`);
+        mesh.setParent(parentMesh); // Attach to parent
         shadowGenerator.getShadowMap().renderList.push(mesh);
       }
     });
 
-    camera.target = meshes[0];
-
-    // Now apply materials after model has loaded
+    // Apply materials
     meshes.forEach(part => {
       switch (part.material?.name || "Unnamed Material") {
         case "knob":
@@ -136,12 +141,35 @@ async function loadModel() {
       }
     });
 
+    // Set camera target to parent
+    camera.target = new Vector3(0, 0, 0);
+
+    // Animate the parent mesh
+    parentMesh.position.y = 5; // Start above
+    gsap.to(parentMesh.position, {
+      y: 0.8,                  // Final spot
+      duration: 1.5,
+      ease: "bounce.out",
+      onUpdate: () => scene.render() // Ensure shadows update
+    });
+
   } catch (error) {
     console.error("Error loading model:", error);
   }
 }
 
+
+
+
+
+
+
+
+
 loadModel();
+
+
+
 
 // Setup default environment for the scene
 scene.createDefaultEnvironment({
