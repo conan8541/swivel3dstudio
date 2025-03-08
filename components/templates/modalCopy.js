@@ -14,7 +14,11 @@ export default function createModal() {
   
     const icon = document.createElement("div");
     icon.classList.add("w-16", "h-16", "mx-auto", "mb-4");
-    icon.innerHTML = `<svg class="w-full h-full text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m-4-4h8"></path></svg>`;
+    icon.innerHTML = `
+      <svg class="w-full h-full text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m-4-4h8"></path>
+      </svg>
+    `;
   
     const header = document.createElement("h3");
     header.classList.add("text-2xl", "font-bold", "text-indigo-400", "text-center", "mb-6");
@@ -54,6 +58,7 @@ export default function createModal() {
     overlay.appendChild(modal);
     app.appendChild(overlay);
   
+    // Define hide first
     const hide = () => {
       overlay.classList.add("hidden");
       modal.classList.add("scale-95");
@@ -76,7 +81,7 @@ export default function createModal() {
               "transition-colors", "pl-2", "border-l-2", "border-transparent", "hover:border-indigo-400"
             );
             li.textContent = `• ${item.title}`;
-            li.onclick = item.onclick;
+            li.onclick = item.onclick; // Relies on passed onclick
             contentLeft.appendChild(li);
           });
         }
@@ -84,6 +89,6 @@ export default function createModal() {
         modal.classList.remove("scale-95");
         modal.classList.add("scale-100");
       },
-      hide
+      hide: hide // Explicitly pass the function
     };
   }

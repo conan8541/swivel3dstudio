@@ -1,27 +1,24 @@
 import { cardData } from './data/cardData';
-import createModal from './templates/modal.js';
-import createSceneModal from './templates/SceneModal.js';
 
 export default function createCards() {
   const container = document.createElement("section");
   container.id = "webGlCard";
   container.classList.add("card-container", "w-full", "py-8");
 
+  // Section Title
   const sectionTitle = document.createElement("h2");
   sectionTitle.classList.add("text-3xl", "font-bold", "text-center", "mb-6", "text-black");
   sectionTitle.textContent = "Our Capabilities";
   container.appendChild(sectionTitle);
 
+  // Card Grid
   const grid = document.createElement("div");
   grid.classList.add("grid", "grid-cols-3", "gap-4", "max-w-6xl", "mx-auto");
   container.appendChild(grid);
 
-  const mainModal = createModal();
-  const sceneModal = createSceneModal();
-
   cardData.forEach((data) => {
     const card = document.createElement("div");
-    card.classList.add("webGLcard", "flex", "flex-col", "h-full");
+    card.classList.add("webGLcard", "flex", "flex-col", "h-full"); // Flex column, full height
 
     const img = document.createElement("img");
     img.src = data.imageUrl;
@@ -35,24 +32,9 @@ export default function createCards() {
     card.appendChild(title);
 
     const desc = document.createElement("p");
-    desc.classList.add("text-base", "font-light", "mid-gray-text", "mt-1", "flex-grow");
+    desc.classList.add("text-base", "font-light", "mid-gray-text", "mt-1", "flex-grow"); // Grow to fill
     desc.textContent = data.description;
     card.appendChild(desc);
-
-    card.classList.add("cursor-pointer", "hover:shadow-lg", "transition-shadow");
-    card.onclick = () => {
-      const menuWithBack = data.menu.map(item => ({
-        ...item,
-        onclick: () => {
-          console.log("Card clicked");
-          mainModal.hide();
-          sceneModal.show(item.title, item.endpoint, () => {
-            mainModal.show(data.title, data.description, menuWithBack);
-          });
-        }
-      }));
-      mainModal.show(data.title, data.description, menuWithBack);
-    };
 
     grid.appendChild(card);
   });

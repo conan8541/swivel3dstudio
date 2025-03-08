@@ -48,7 +48,7 @@ export default function createSceneModal() {
         modal.classList.add("scale-100");
         closeBtn.onclick = () => {
           hide();
-          if (onClose) onClose();
+          if (onClose) onClose(); // Call back to reopen main modal
         };
       },
       hide
