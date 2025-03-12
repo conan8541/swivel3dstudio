@@ -11,7 +11,6 @@ export default function createIllustrationSection() {
     const row = document.createElement("div");
     row.classList.add("hero-content", "flex");
     row.style.flexDirection = index % 2 === 1 ? "row-reverse" : "row"; // Force it
-    console.log(`Index ${index}: ${row.style.flexDirection} - ${data.title}`);
 
     const img = document.createElement("img");
     img.src = data.imageUrl;

@@ -44,9 +44,10 @@ export default function createCards() {
       const menuWithBack = data.menu.map(item => ({
         ...item,
         onclick: () => {
-          console.log("Card clicked");
+          console.log(data.menu[0])
+          let setPath = data.menu[0]
           mainModal.hide();
-          sceneModal.show(item.title, item.endpoint, () => {
+          sceneModal.show(item.title, item.nuScene, () => { // Use scenePath, not endpoint
             mainModal.show(data.title, data.description, menuWithBack);
           });
         }
